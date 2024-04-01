@@ -14,7 +14,7 @@ function App() {
         <CurrentViewProvider>
           <Grid
             container
-            spacing={2}
+            rowspacing={1}
             justifyContent="center"
             alignItems="center"
           >
