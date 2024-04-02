@@ -32,7 +32,7 @@ function LocationCard({ id, location, favourite }) {
   const fetchCurrentWeather = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&units=${unit}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&units=${unit}&appid=${process.env.VITE_APP_API_KEY}`
       );
       setWeather({ data: response.data, loading: false, error: false });
     } catch (error) {
