@@ -26,7 +26,6 @@ function LocationCard({ id, location, favourite }) {
   const [locationName, setLocation] = useState(location);
   const [favourited, setFavourited] = useState(favourite);
   const [isEditable, setIsEditable] = useState(false);
-  const apiKey = "2147a905fedead0898bb37909c7739e4";
   const unit = isCelcius ? "imperial" : "metric";
 
   const fetchCurrentWeather = async () => {

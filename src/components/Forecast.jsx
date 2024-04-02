@@ -11,13 +11,14 @@ function Forecast() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [timezone, setTimezone] = useState("");
-  const apiKey = "2147a905fedead0898bb37909c7739e4";
   const unit = isCelcius ? "imperial" : "metric";
 
   const fetchCurrentWeather = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${currentViewLocation}&units=${unit}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${currentViewLocation}&units=${unit}&appid=${
+          import.meta.env.VITE_APP_API_KEY
+        }`
       );
       setWeather({ data: response.data, loading: false, error: false });
     } catch (error) {
@@ -27,7 +28,9 @@ function Forecast() {
   const fetchForecast = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${currentViewLocation}&appid=${apiKey}&units=${unit}&cnt=7`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${currentViewLocation}&appid=${
+          import.meta.env.VITE_APP_API_KEY
+        }&units=${unit}&cnt=7`
       );
       setForecast(response.data.list);
       setTimezone(response.data.city.timezone);
