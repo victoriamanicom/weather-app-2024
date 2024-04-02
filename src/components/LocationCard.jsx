@@ -6,6 +6,7 @@ import {
   IconButton,
   Stack,
   TextField,
+  CardActionArea,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -96,70 +97,72 @@ function LocationCard({ id, location, favourite }) {
           handleCardClick(e);
         }}
       >
-        <CardContent sx={{ pt: 0, pb: 0 }}>
-          <Stack
-            alignItems="center"
-            justifyContent="space-between"
-            direction="row"
-            gap={3}
-          >
-            {isEditable ? (
-              <TextField
-                id={id}
-                autoFocus
-                value={locationName}
-                onChange={(event) => {
-                  setLocation(event.target.value);
-                }}
-                onBlur={(event) => {
-                  setIsEditable(false);
-                  handleLocationChange(event);
-                }}
-              />
-            ) : (
-              <Typography variant="h5" component="div">
-                {locationName}
-              </Typography>
-            )}
-            {weather ? (
-              <>
-                <Typography variant="h6">
-                  {Math.round(weather.data.main.temp)}°{isCelcius ? "F" : "C"}
-                </Typography>
-                <img
-                  className="card-weather-icon"
-                  src={`https://openweathermap.org/img/wn/${weather.data.weather[0].icon}@2x.png`}
-                  height="70px"
-                  alt={weather.data.weather[0].description}
+        <CardActionArea>
+          <CardContent sx={{ pt: 0, pb: 0 }}>
+            <Stack
+              alignItems="center"
+              justifyContent="space-between"
+              direction="row"
+              gap={3}
+            >
+              {isEditable ? (
+                <TextField
+                  id={id}
+                  autoFocus
+                  value={locationName}
+                  onChange={(event) => {
+                    setLocation(event.target.value);
+                  }}
+                  onBlur={(event) => {
+                    setIsEditable(false);
+                    handleLocationChange(event);
+                  }}
                 />
-              </>
-            ) : (
-              "loading"
-            )}
-          </Stack>
-        </CardContent>
-        <CardActions sx={{ pt: 0 }}>
-          <IconButton value={id} size="small" onClick={favouriteLocation}>
-            <FavouriteIcon filled={favourited} />
-          </IconButton>
-          <IconButton
-            size="small"
-            onClick={() => {
-              setIsEditable(true);
-            }}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            id={id}
-            size="small"
-            onClick={(e) => {
-              deleteLocation(e);
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </CardActions>
+              ) : (
+                <Typography variant="h5" component="div">
+                  {locationName}
+                </Typography>
+              )}
+              {weather ? (
+                <>
+                  <Typography variant="h6">
+                    {Math.round(weather.data.main.temp)}°{isCelcius ? "F" : "C"}
+                  </Typography>
+                  <img
+                    className="card-weather-icon"
+                    src={`https://openweathermap.org/img/wn/${weather.data.weather[0].icon}@2x.png`}
+                    height="70px"
+                    alt={weather.data.weather[0].description}
+                  />
+                </>
+              ) : (
+                "loading"
+              )}
+            </Stack>
+          </CardContent>
+          <CardActions sx={{ pt: 0 }}>
+            <IconButton value={id} size="small" onClick={favouriteLocation}>
+              <FavouriteIcon filled={favourited} />
+            </IconButton>
+            <IconButton
+              size="small"
+              onClick={() => {
+                setIsEditable(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              id={id}
+              size="small"
+              onClick={(e) => {
+                deleteLocation(e);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </CardActions>
+        </CardActionArea>
       </Card>
     </>
   );
