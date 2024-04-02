@@ -84,7 +84,7 @@ function Forecast() {
           )}
         </Stack>
 
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} alignItems="center" sx={{ px: 3 }}>
           {forecast.map((hourlyForecast) => (
             <Paper sx={{ p: 1 }}>
               <Stack alignItems="center">
